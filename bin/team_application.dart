@@ -1,59 +1,43 @@
 import 'dart:math';
 
-abstract class Team {
-  abstract final int health;
-  abstract final String worrier;
-}
-
-class TeamA extends Team {
-  @override
+class Worrior  {
   final int health;
 
-  @override
-  final String worrier;
+  final String name;
 
-  TeamA(this.health, this.worrier);
+  Worrior(this.health, this.name);
 
   @override
-  String toString() => '** $worrier with health $health\n';
+  String toString() => '** $name with health $health\n';
 }
 
-class TeamB extends Team {
-  @override
-  final int health;
-
-  @override
-  final String worrier;
-
-  TeamB(this.health, this.worrier);
-
-  @override
-  String toString() => '** $worrier with health $health\n';
-}
 
 void main() async {
   print("** Generating the teams");
   print('**');
 
-  teamGenerationFunction(teamName) {
+  // TODO:
+  // 1. return types ALWAYS!!!!
+  // 2. Type annotations ALWAYS!!!
+  // 3. Extract this function on a top level
+  // 4. If function return something - it should starts with 'get' or 'fetch' or 'load'
+   teamGenerationFunction() {
     var team = [];
     final randomTeam = Random().nextInt(2) + 3;
 
     for (var i = 0; i < randomTeam; i++) {
       final randomHealth = Random().nextInt(50) + 50;
+      // TODO: omit type annotation
       int countTeam = i + 1;
       var worrier = "Worrier $countTeam";
-
-      teamName == "TeamA"
-          ? team.add(TeamA(randomHealth, worrier))
-          : team.add(TeamB(randomHealth, worrier));
+      team.add(Worrior(randomHealth, worrier));
     }
 
     return team;
   }
 
-  var teamA = teamGenerationFunction("TeamA");
-  var teamB = teamGenerationFunction("TeamB");
+  var teamA = teamGenerationFunction();
+  var teamB = teamGenerationFunction();
 
   print("** Teams are ready to fight and they are:\n");
 
@@ -71,15 +55,20 @@ void main() async {
 
   for (var i = 0; i < 3; i++) {
     int count = 3 - i;
+    // TODO: prefer async / await syntacsys
     await Future.delayed(const Duration(seconds: 1))
         .then((value) => print("** $count\n"));
   }
 
+  // TODO: prefer async / await syntacsys
   await Future.delayed(const Duration(seconds: 1))
       .then((value) => print("** FIGHT\n"));
 
+
   var myList = [...teamA, ...teamB];
 
+
+  // TODO: if you don't use any arguments from the for cycle - change to _
   for (var element in myList) {
     if (teamA.isEmpty) {
       print('Team B won the battle');
@@ -89,9 +78,10 @@ void main() async {
       print('Team A won the battle');
       return;
     } else {
-      var worrierA = teamA.first.worrier;
-      var worrierB = teamB.first.worrier;
+      var worrierA = teamA.first.name;
+      var worrierB = teamB.first.name;
 
+      // TODO: if you don't use any arguments from the for cycle - change to _
       await Future.delayed(const Duration(seconds: 1))
           .then((value) => print('Team A $worrierA vs Team B $worrierB'));
 
@@ -99,8 +89,9 @@ void main() async {
         var wins = teamA.first.health - teamB.first.health;
         teamB.removeAt(0);
         teamA.removeAt(0);
-        teamA.insert(0, TeamA(wins, worrierA));
+        teamA.insert(0, Worrior(wins, worrierA));
 
+        // TODO: if you don't use any arguments from the for cycle - change to _
         await Future.delayed(const Duration(seconds: 1)).then(
             (value) => print("Team A wins with $wins health points left"));
         print('**\n');
@@ -108,8 +99,9 @@ void main() async {
         var wins = teamB.first.health - teamA.first.health;
         teamA.removeAt(0);
         teamB.removeAt(0);
-        teamB.insert(0, TeamB(wins, worrierB));
+        teamB.insert(0, Worrior(wins, worrierB));
 
+        // TODO: if you don't use any arguments from the for cycle - change to _
         await Future.delayed(const Duration(seconds: 1)).then(
             (value) => print("Team B wins with $wins health points left"));
         print('**\n');
