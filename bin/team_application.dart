@@ -3,6 +3,7 @@ import 'dart:math';
 abstract class Team {
   abstract final int health;
   abstract final String worrier;
+  int i = 1;
 }
 
 class TeamA extends Team {
