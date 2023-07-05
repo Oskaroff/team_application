@@ -46,6 +46,7 @@ void main() async {
   print('**\n');
 
   print("Team B");
+
   teamB.forEach((element) => print(element));
 
   print('**\n');
