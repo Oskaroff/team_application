@@ -33,6 +33,7 @@ applyBattleTeam(String team, int wins) async {
 
 void main() async {
   print("** Generating the teams");
+
   print('**');
 
   var teamA = generateTeam();
