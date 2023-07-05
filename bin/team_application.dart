@@ -33,6 +33,7 @@ applyBattleTeam(String team, int wins) async {
 
 void main() async {
   print("** Generating the teams");
+
   print('**');
 
   var teamA = generateTeam();
@@ -46,6 +47,7 @@ void main() async {
   print('**\n');
 
   print("Team B");
+
   teamB.forEach((element) => print(element));
 
   print('**\n');
